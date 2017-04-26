@@ -60,9 +60,10 @@ console.log(hide_all_nomor_ktp(hideString) === hideString) // true
 // Example: 480.01.4430 and 480014430 would both be 480-01-4430.
 const format_nomor = (string) => {
   // let strip_except_num = string.replace(/\D/g,'');
-  let regex = /\(?(\d{3})\)?[- ]?(\d{2})[- ]?(\d{4})/g;
-  let subst = '$1-$2-$3';
-  return string.replace(regex, subst);
+  // let regex = /\(?(\d{3})\)?[- ]?(\d{2})[- ]?(\d{4})/g;
+  // let subst = '$1-$2-$3';
+  // return string.replace(regex, subst);
+  return string.replace(/(\d{3})\D?(\d{2})\D?(\d{4})/g,`$1-$2-$3`)
 }
 
 console.log('format_nomor finds and reformat any nomor KTP in the string')
