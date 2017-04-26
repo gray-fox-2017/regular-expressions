@@ -85,16 +85,13 @@ console.log(hide_all_nomor_ktp(hideString) === hideString) // true
 // Example: 480.01.4430 and 480014430 would both be 480-01-4430.
 const format_nomor = (string) => {
   if (/\d{9}/g.test(string)) {
-    console.log(string);
-    let arrKTP = string.match(/\d{3}.*\d{2}.*\d{4}/g);
-    console.log(arrKTP);
+    let arrKTP = string.split(", ");
+    //let arrKTP = string.match(/\d{3}.*\d{2}.*\d{4}/g);
     let formatKTP = "";
     for (let i=0;i<arrKTP.length;i++) {
       formatKTP = arrKTP[i].replace(/(\d{3}).*(\d{2}).*(\d{4})/,"$1-$2-$3");
-      //console.log(formatKTP);
         arrKTP[i] = formatKTP;
     }
-    console.log(arrKTP);
     return arrKTP.join(", ");
   }
   else {
@@ -112,7 +109,7 @@ console.log(format_nomor(formatString) === formatString) // true
 
 module.exports = {
   has_ktp,
-  // grab_ktp,
-  // grab_all_nomor_ktp,
-  // hide_all_nomor_ktp
+  grab_ktp,
+  grab_all_nomor_ktp,
+  hide_all_nomor_ktp
 }
