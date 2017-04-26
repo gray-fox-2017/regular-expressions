@@ -72,8 +72,7 @@ console.log(hide_all_nomor_ktp(hideString) === hideString) // true
 // Ensure all of the Social Security numbers use dashes for delimiters.
 // Example: 480.01.4430 and 480014430 would both be 480-01-4430.
 const format_nomor = (string) => {
-  let regex = /(\d{3}).?(\d{2}).?(\d{4})/g;
-  //let regex = /(\d{3})\W?(\d{2})\W?(\d{4})/g;
+  let regex = /(\d{3})\W?(\d{2})\W?(\d{4})/g;
   return string.replace(regex,'$1-$2-$3')
 }
 
@@ -83,7 +82,6 @@ console.log(format_nomor('234601422, 350.80.0744, 013-60-8762') === '234-60-1422
 console.log('format_nomor does not alter a string without nomor KTP in it')
 
 let formatString = 'please confirm your identity: 44211422'
-//let formatString = 'please confirm your identity: 350_80_0744'
 console.log(format_nomor(formatString) === formatString) // true
 
 module.exports = {
