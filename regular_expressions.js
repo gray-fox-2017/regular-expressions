@@ -2,7 +2,7 @@
 
 // Determine whether a string contains a nomor KTP
 const has_ktp = (string) => {
-  // ...
+  return /\d{3}-\d{2}-\d{4}/.test(string);
 }
 
 console.log('has_ktp if it has what looks like a nomor KTP')
@@ -15,7 +15,11 @@ console.log(has_ktp('please confirm your identity: XXX-XX-1422') === false) // t
 
 // Return the Social Security number from a string.
 const grab_ktp = (string) => {
-  // ...
+  var ktp = string.match(/\d{3}-\d{2}-\d{4}/);
+  if (ktp) {
+    return ktp[0];
+  }
+  return null;
 }
 
 console.log('grab_ktp returns nomor KTP if the string has an nomor KTP')
@@ -28,7 +32,11 @@ console.log(grab_ktp('please confirm your identity: XXX-XX-1422') === null) // t
 
 // Return all of the Social Security numbers from a string.
 const grab_all_nomor_ktp = (string) => {
-  // ...
+  var listKTP = string.match(/\d{3}-\d{2}-\d{4}/g);
+  if (listKTP){
+    return listKTP;
+  }
+  return [];
 }
 
 console.log('grab_all_nomor_ktp returns all nomor KTP if the string has any nomor KTP')
@@ -41,7 +49,8 @@ console.log(grab_all_nomor_ktp('please confirm your identity: XXX-XX-1422')) // 
 
 // Obfuscate all of the nomor KTP in a string. Example: XXX-XX-4430.
 const hide_all_nomor_ktp = (string) => {
-  // ...
+  var hidden = string.replace(/\d{3}-\d{2}/g, 'xxx-xx')
+  return hidden;
 }
 
 console.log('hide_all_nomor_ktp obfuscates any nomor KTP in the string')
@@ -57,7 +66,21 @@ console.log(hide_all_nomor_ktp(hideString) === hideString) // true
 // Ensure all of the Social Security numbers use dashes for delimiters.
 // Example: 480.01.4430 and 480014430 would both be 480-01-4430.
 const format_nomor = (string) => {
-  // ...
+  var arr = string.split(',');
+  var newArr = [];
+  for (var i=0; i<arr.length; i++){
+    if(/(\d{3})(\d{2})(\d{4})/g.test(arr[i])){
+      var format1 = arr[i].replace(/(\d{3})(\d{2})(\d{4})/g, "$1-$2-$3");
+      newArr.push(format1);
+    } else if (/\./g){
+      var format2 = arr[i].replace(/\./g, "-");
+      newArr.push(format2);
+    } else {
+      newArr.push(arr[i]);
+    }
+  }
+  var str = newArr.join(',')
+  return str;
 }
 
 console.log('format_nomor finds and reformat any nomor KTP in the string')
