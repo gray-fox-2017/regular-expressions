@@ -6,7 +6,7 @@ const has_ktp = (string) => {
   let benar = /(\d{3})-(\d{2})-(\d{4})/
   let salah = /(^\d{3})-(\d{2})-(\d{4})/
   if (benar.test(string) == true) { return true }
-  if (salah.test(string) == true) { return false }
+  if (salah.test(string) == false) { return false }
 
 }
 
@@ -22,13 +22,20 @@ console.log(has_ktp('please confirm your identity: XXX-XX-1422') === false) // t
 const grab_ktp = (string) => {
   // ...
   let benar = (/(\d{3})-(\d{2})-(\d{4})/g);
-  if (benar.test(string) == true) {
-    return  string.match(benar).join('')
-  }
+  // if (benar.test(string) == true) {
+    // return  string.match(benar).join('')
+     if (string.match(benar) !== null) {
+       return   string.match(benar).join('')
+     } else {
+       return null
+     }
+  // }
+  //
+  // if (benar.test(string) == false) {
+  //   return string.match(benar)
+  // }
 
-  if (benar.test(string) == false) {
-    return string.match(benar)
-  }
+
 
 }
 
@@ -47,11 +54,12 @@ const grab_all_nomor_ktp = (string) => {
 
   if (benar.test(string) == true) {
     return string.match(benar)
-  }
-
-  if (benar.test(string) == false) {
+  } else {
     return []
   }
+  //   if (benar.test(string) == false) {
+  //   return []
+  // }
 
 
 
