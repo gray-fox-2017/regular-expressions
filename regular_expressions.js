@@ -28,9 +28,7 @@ console.log(grab_ktp('please confirm your identity: XXX-XX-1422') === null) // t
 
 // Return all of the Social Security numbers from a string.
 const grab_all_nomor_ktp = (string) => {
-  let tmp = [];
-  tmp.push(string.match(/(\d{3})-(\d{2})-(\d{4})/g));
-  return tmp;
+  return string.match(/(\d{3})-(\d{2})-(\d{4})/g);
 }
 
 console.log('grab_all_nomor_ktp returns all nomor KTP if the string has any nomor KTP')
@@ -59,10 +57,6 @@ console.log(hide_all_nomor_ktp(hideString) === hideString) // true
 // Ensure all of the Social Security numbers use dashes for delimiters.
 // Example: 480.01.4430 and 480014430 would both be 480-01-4430.
 const format_nomor = (string) => {
-  // let strip_except_num = string.replace(/\D/g,'');
-  // let regex = /\(?(\d{3})\)?[- ]?(\d{2})[- ]?(\d{4})/g;
-  // let subst = '$1-$2-$3';
-  // return string.replace(regex, subst);
   return string.replace(/(\d{3})\D?(\d{2})\D?(\d{4})/g,`$1-$2-$3`)
 }
 
