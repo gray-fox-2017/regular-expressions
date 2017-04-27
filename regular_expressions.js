@@ -59,19 +59,18 @@ console.log(grab_all_nomor_ktp('please confirm your identity: XXX-XX-1422')) // 
 
 // Obfuscate all of the nomor KTP in a string. Example: XXX-XX-4430.
 const hide_all_nomor_ktp = (string) => {
-var hasil = [];
-var regex = /\d{3}-\d{2}-\d{4}/g;
-  // ...
+  var hasil = [];
+  var regex = /\d{3}-\d{2}-\d{4}/g;
+    // ...
   var preHasil = string.match(regex);
   if (regex.test(string) == true) {
-for (var i=0;i<preHasil.length;i++) {
-hasil.push(preHasil[i].replace(/\d{3}-\d{2}/, "XXX-XX"));
-}
-return hasil.join(', ');
-}
-else {
-  return string;
-}
+    for (var i=0;i<preHasil.length;i++) {
+      hasil.push(preHasil[i].replace(/\d{3}-\d{2}/, "XXX-XX"));
+    }
+    return hasil.join(', ');
+  } else {
+    return string;
+  }
 }
 
 console.log('hide_all_nomor_ktp obfuscates any nomor KTP in the string')
@@ -90,18 +89,17 @@ const format_nomor = (string) => {
   // ...
   if (/[a-z]/i.test(string) == true) {
     return string;
-  }
-  else {
-  var arrSemua = string.match(/\d/g);
-  var arr1 = arrSemua.slice(0,9);
-  var arr2 = arrSemua.slice(9,18);
-  var arr3 = arrSemua.slice(18);
-  arr1.splice(3,0,'-');
-  arr1.splice(6,0,'-');
-  arr3.splice(3,0,'-');
-  arr3.splice(6,0,'-');
-  arr2.splice(3,0,'-');
-  arr2.splice(6,0,'-');
+  } else {
+    var arrSemua = string.match(/\d/g);
+    var arr1 = arrSemua.slice(0,9);
+    var arr2 = arrSemua.slice(9,18);
+    var arr3 = arrSemua.slice(18);
+    arr1.splice(3,0,'-');
+    arr1.splice(6,0,'-');
+    arr3.splice(3,0,'-');
+    arr3.splice(6,0,'-');
+    arr2.splice(3,0,'-');
+    arr2.splice(6,0,'-');
     return arr1.join('') + ', ' + arr2.join('') + ', ' + arr3.join('');
   }
 }
